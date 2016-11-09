@@ -1,0 +1,22 @@
+package controleur;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
+
+@Entity
+@Table(name="roles_utilisateurs")
+public class Roles_utilisateurs {
+
+	private int id;
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	@ManyToOne
+	private Utilisateurs utilisateur;
+	
+}
