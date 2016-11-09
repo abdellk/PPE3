@@ -1,0 +1,15 @@
+package controleur;
+
+import java.util.Date;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+public class Roles {
+
+	private int id;
+	private String role;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+}

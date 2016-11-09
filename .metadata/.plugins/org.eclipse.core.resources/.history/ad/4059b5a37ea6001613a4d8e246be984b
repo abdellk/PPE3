@@ -22,16 +22,12 @@ public class Roles_utilisateurs {
 	@ManyToOne
 	@JoinColumn(name="utlisateurs_fk")
 	private Utilisateurs utilisateur;
-	@ManyToOne
-	@JoinColumn(name="roles_fk")
-	private Roles role;
-
-	public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par, Utilisateurs utilisateur, Roles role) {
+	
+	public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par, Utilisateurs utilisateur) {
 		super();
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
 		this.utilisateur = utilisateur;
-		this.role = role;
 	}
 
 	public Roles_utilisateurs() {
@@ -62,14 +58,11 @@ public class Roles_utilisateurs {
 		return utilisateur;
 	}
 
-	public Roles getRole() {
-		return role;
-	}
-
 	@Override
 	public String toString() {
 		return "Roles_utilisateurs [id=" + id + ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par="
-				+ modifier_par + ", utilisateur=" + utilisateur + ", role=" + role + "]";
+				+ modifier_par + ", utilisateur=" + utilisateur + "]";
 	}
+	
 	
 }

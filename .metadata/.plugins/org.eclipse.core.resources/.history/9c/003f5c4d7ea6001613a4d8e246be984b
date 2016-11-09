@@ -1,0 +1,10 @@
+package controleur;
+
+public class Roles {
+
+	private int id;
+	private String role;
+	
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+}
