@@ -4,19 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="JARs/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="JARs/derbyclient.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_cs.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_de_DE.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_es.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_fr.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_hu.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_it.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_ja_JP.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_ko_KR.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_pl.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_pt_BR.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_ru.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_zh_CN.jar"/>
-	<classpathentry kind="lib" path="JARs/derbyLocale_zh_TW.jar"/>
 	<classpathentry kind="lib" path="JARs/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="JARs/geronimo-jta_1.1_spec-1.1.1.jar"/>
 	<classpathentry kind="lib" path="JARs/hibernate-commons-annotations-5.0.0.Final.jar"/>

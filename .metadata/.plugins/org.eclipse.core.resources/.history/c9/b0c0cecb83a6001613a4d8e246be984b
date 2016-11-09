@@ -28,8 +28,6 @@ public class Roles {
 	private String description;
 	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
 	private List<Roles_utilisateurs> utilisateurs = new ArrayList<>();
-	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
-	private List<Roles_action> action = new ArrayList<>();
 	
 	public Roles(String role, Date derniere_mise_a_jour, String modifier_par, String description) {
 		super();
