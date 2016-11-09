@@ -30,10 +30,6 @@ public class Utilisateurs {
 	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.ALL)
 	private List<Roles_utilisateurs> roles = new ArrayList<>();
 	
-	public void ajoutRoles(Roles_utilisateurs ru){
-		roles.add(ru);
-		ru.setUtilisateur(this);
-	}
 	
 	public Utilisateurs(String email, String nom, String prenom, Date derniere_mise_a_jour,
 			String modifier_par) {

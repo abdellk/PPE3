@@ -69,14 +69,6 @@ public class Roles_utilisateurs {
 		return role;
 	}
 
-	public void setUtilisateur(Utilisateurs utilisateur) {
-		this.utilisateur = utilisateur;
-	}
-
-	public void setRole(Roles role) {
-		this.role = role;
-	}
-
 	@Override
 	public String toString() {
 		return "Roles_utilisateurs [idru=" + idru + ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par="

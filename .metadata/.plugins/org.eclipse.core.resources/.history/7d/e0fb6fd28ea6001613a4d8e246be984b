@@ -38,7 +38,6 @@ public class Roles {
 	
 	public void ajoutUtilisateur(Roles_utilisateurs ru){
 		utilisateurs.add(ru);
-		ru.setRole(this);
 	}
 	
 	public Roles(String role, Date derniere_mise_a_jour, String modifier_par, String description) {

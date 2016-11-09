@@ -68,6 +68,14 @@ public class Roles_action {
 	public int getIdra() {
 		return idra;
 	}
+
+	public void setAction(Action action) {
+		this.action = action;
+	}
+
+	public void setRole(Roles role) {
+		this.role = role;
+	}
 	
 	
 }

@@ -15,50 +15,43 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="roles")
-public class Roles {
+@Table(name="action")
+public class Action {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idr;
-	private String role;
+	private int ida;
+	private String action;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date derniere_mise_a_jour;
 	private String modifier_par;
 	private String description;
-	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
-	private List<Roles_utilisateurs> utilisateurs = new ArrayList<>();
-	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
-	private List<Roles_action> action = new ArrayList<>();
-
-	public void ajoutAction(Roles_action ra){
-		action.add(ra);
-		ra.setRole(this);
-	}
+	@OneToMany(mappedBy="action", cascade=CascadeType.ALL)
+	private List<Roles_action> actions = new ArrayList<>();
 	
-	public void ajoutUtilisateur(Roles_utilisateurs ru){
-		utilisateurs.add(ru);
-		ru.setRole(this);
-	}
-	
-	public Roles(String role, Date derniere_mise_a_jour, String modifier_par, String description) {
+	public Action(String action, Date derniere_mise_a_jour, String modifier_par, String description) {
 		super();
-		this.role = role;
+		this.action = action;
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
 		this.description = description;
 	}
+	
+	public void ajoutRole(Roles_action ra){
+		actions.add(ra);
+		ra.set
+	}
 
-	public Roles() {
+	public Action() {
 		super();
 	}
 
-	public String getRole() {
-		return role;
+	public String getAction() {
+		return action;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setAction(String action) {
+		this.action = action;
 	}
 
 	public Date getDerniere_mise_a_jour() {
@@ -86,18 +79,13 @@ public class Roles {
 	}
 
 	public int getId() {
-		return idr;
-	}
-
-	public List<Roles_utilisateurs> getUtilisateurs() {
-		return utilisateurs;
+		return ida;
 	}
 
 	@Override
 	public String toString() {
-		return "Roles [idr=" + idr + ", role=" + role + ", derniere_mise_a_jour=" + derniere_mise_a_jour
-				+ ", modifier_par=" + modifier_par + ", description=" + description + ", utilisateurs=" + utilisateurs
-				+ "]";
+		return "Action [id=" + ida + ", action=" + action + ", derniere_mise_a_jour=" + derniere_mise_a_jour
+				+ ", modifier_par=" + modifier_par + ", description=" + description + "]";
 	}
 	
 	

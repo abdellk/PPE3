@@ -32,7 +32,6 @@ public class Utilisateurs {
 	
 	public void ajoutRoles(Roles_utilisateurs ru){
 		roles.add(ru);
-		ru.setUtilisateur(this);
 	}
 	
 	public Utilisateurs(String email, String nom, String prenom, Date derniere_mise_a_jour,

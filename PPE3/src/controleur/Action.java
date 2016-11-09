@@ -36,6 +36,11 @@ public class Action {
 		this.modifier_par = modifier_par;
 		this.description = description;
 	}
+	
+	public void ajoutRole(Roles_action ra){
+		actions.add(ra);
+		ra.setAction(this);
+	}
 
 	public Action() {
 		super();

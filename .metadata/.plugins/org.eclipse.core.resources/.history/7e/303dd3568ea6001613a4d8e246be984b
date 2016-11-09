@@ -30,16 +30,6 @@ public class Roles {
 	private List<Roles_utilisateurs> utilisateurs = new ArrayList<>();
 	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
 	private List<Roles_action> action = new ArrayList<>();
-
-	public void ajoutAction(Roles_action ra){
-		action.add(ra);
-		ra.setRole(this);
-	}
-	
-	public void ajoutUtilisateur(Roles_utilisateurs ru){
-		utilisateurs.add(ru);
-		ru.setRole(this);
-	}
 	
 	public Roles(String role, Date derniere_mise_a_jour, String modifier_par, String description) {
 		super();

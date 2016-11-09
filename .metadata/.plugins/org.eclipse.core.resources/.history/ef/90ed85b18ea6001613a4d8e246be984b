@@ -13,31 +13,31 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="roles_utilisateurs")
-public class Roles_utilisateurs {
+@Table(name="roles_action")
+public class Roles_action {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idru;
+	private int idra;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date derniere_mise_a_jour;
 	private String modifier_par;
 	@ManyToOne
-	@JoinColumn(name="utlisateurs_fk")
-	private Utilisateurs utilisateur;
+	@JoinColumn(name="action_fk")
+	private Action action;
 	@ManyToOne
-	@JoinColumn(name="roles_fk")
+	@JoinColumn(name="role_fk")
 	private Roles role;
-
-	public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par, Utilisateurs utilisateur, Roles role) {
+	
+	public Roles_action(Date derniere_mise_a_jour, String modifier_par, Action action, Roles role) {
 		super();
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
-		this.utilisateur = utilisateur;
+		this.action = action;
 		this.role = role;
 	}
 
-	public Roles_utilisateurs() {
+	public Roles_action() {
 		super();
 	}
 
@@ -57,30 +57,17 @@ public class Roles_utilisateurs {
 		this.modifier_par = modifier_par;
 	}
 
-	public int getId() {
-		return idru;
-	}
-
-	public Utilisateurs getUtilisateur() {
-		return utilisateur;
+	public Action getAction() {
+		return action;
 	}
 
 	public Roles getRole() {
 		return role;
 	}
 
-	public void setUtilisateur(Utilisateurs utilisateur) {
-		this.utilisateur = utilisateur;
+	public int getIdra() {
+		return idra;
 	}
-
-	public void setRole(Roles role) {
-		this.role = role;
-	}
-
-	@Override
-	public String toString() {
-		return "Roles_utilisateurs [idru=" + idru + ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par="
-				+ modifier_par + ", utilisateur=" + utilisateur + ", role=" + role + "]";
-	}
+	
 	
 }
