@@ -29,12 +29,17 @@ public class Roles_utilisateurs {
 	@JoinColumn(name="roles_fk")
 	private Roles role;
 
-	public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par, Utilisateurs utilisateur, Roles role) {
+	/*public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par, Utilisateurs utilisateur, Roles role) {
 		super();
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
 		this.utilisateur = utilisateur;
 		this.role = role;
+	}*/
+	public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par) {
+		super();
+		this.derniere_mise_a_jour = derniere_mise_a_jour;
+		this.modifier_par = modifier_par;
 	}
 
 	public Roles_utilisateurs() {

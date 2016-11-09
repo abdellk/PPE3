@@ -29,17 +29,12 @@ public class Roles_action {
 	@JoinColumn(name="role_fk")
 	private Roles role;
 	
-	/*public Roles_action(Date derniere_mise_a_jour, String modifier_par, Action action, Roles role) {
+	public Roles_action(Date derniere_mise_a_jour, String modifier_par, Action action, Roles role) {
 		super();
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
 		this.action = action;
 		this.role = role;
-	}*/
-	public Roles_action(Date derniere_mise_a_jour, String modifier_par) {
-		super();
-		this.derniere_mise_a_jour = derniere_mise_a_jour;
-		this.modifier_par = modifier_par;
 	}
 
 	public Roles_action() {
