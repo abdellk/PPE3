@@ -1,0 +1,15 @@
+package controleur;
+
+import java.util.Date;
+
+public class Utilisateurs {
+
+	private int id;
+	private String email;
+	private String nom;
+	private String prenom;
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	
+	
+}

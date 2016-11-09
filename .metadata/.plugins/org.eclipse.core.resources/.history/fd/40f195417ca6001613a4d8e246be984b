@@ -1,0 +1,26 @@
+package controleur;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
+public class Utilisateurs {
+
+	private int id;
+	private String email;
+	private String nom;
+	private String prenom;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.ALL)
+	private List<Roles_utilisateurs> roles = new ArrayList<>();
+	
+	
+}
