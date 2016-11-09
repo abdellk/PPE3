@@ -1,0 +1,32 @@
+package controleur;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="roles_action")
+public class Roles_action {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idra;
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	@ManyToOne
+	@JoinColumn(name="action_fk")
+	private Action action;
+	@ManyToOne
+	@JoinColumn(name="role_fk")
+	private Roles role;
+	
+	
+	
+}

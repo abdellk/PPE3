@@ -1,0 +1,10 @@
+package controleur;
+
+public class Action {
+
+	private int id;
+	private String action;
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	private String description;
+}

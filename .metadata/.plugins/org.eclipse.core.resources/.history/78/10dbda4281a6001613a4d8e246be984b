@@ -1,0 +1,15 @@
+package controleur;
+
+import java.util.Date;
+
+public class Roles_action {
+
+	private int idra;
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	
+	private Action action;
+	
+	private Roles role;
+	
+}

@@ -20,7 +20,7 @@ public class Roles {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int idr;
 	private String role;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date derniere_mise_a_jour;
@@ -74,7 +74,7 @@ public class Roles {
 	}
 
 	public int getId() {
-		return id;
+		return idr;
 	}
 
 	public List<Roles_utilisateurs> getUtilisateurs() {
@@ -83,7 +83,7 @@ public class Roles {
 
 	@Override
 	public String toString() {
-		return "Roles [id=" + id + ", role=" + role + ", derniere_mise_a_jour=" + derniere_mise_a_jour
+		return "Roles [idr=" + idr + ", role=" + role + ", derniere_mise_a_jour=" + derniere_mise_a_jour
 				+ ", modifier_par=" + modifier_par + ", description=" + description + ", utilisateurs=" + utilisateurs
 				+ "]";
 	}

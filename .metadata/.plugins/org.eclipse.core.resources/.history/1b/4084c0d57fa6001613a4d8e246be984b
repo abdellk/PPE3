@@ -1,0 +1,28 @@
+package controleur;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name="action")
+public class Action {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	private String action;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	private String description;
+	
+	
+	
+}

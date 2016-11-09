@@ -20,7 +20,7 @@ public class Utilisateurs {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int idut;
 	private String email;
 	private String nom;
 	private String prenom;
@@ -48,14 +48,8 @@ public class Utilisateurs {
 
 
 	public int getId() {
-		return id;
+		return idut;
 	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 
 	public String getEmail() {
 		return email;
@@ -114,7 +108,7 @@ public class Utilisateurs {
 
 	@Override
 	public String toString() {
-		return "Utilisateurs [id=" + id + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom
+		return "Utilisateurs [idut=" + idut + ", email=" + email + ", nom=" + nom + ", prenom=" + prenom
 				+ ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par=" + modifier_par + ", roles="
 				+ roles + "]";
 	}

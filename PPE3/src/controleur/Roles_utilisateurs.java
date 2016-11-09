@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="roles_utilisateurs")
@@ -16,7 +18,8 @@ public class Roles_utilisateurs {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int idru;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date derniere_mise_a_jour;
 	private String modifier_par;
 	@ManyToOne
@@ -55,7 +58,7 @@ public class Roles_utilisateurs {
 	}
 
 	public int getId() {
-		return id;
+		return idru;
 	}
 
 	public Utilisateurs getUtilisateur() {
@@ -68,7 +71,7 @@ public class Roles_utilisateurs {
 
 	@Override
 	public String toString() {
-		return "Roles_utilisateurs [id=" + id + ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par="
+		return "Roles_utilisateurs [idru=" + idru + ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par="
 				+ modifier_par + ", utilisateur=" + utilisateur + ", role=" + role + "]";
 	}
 	
