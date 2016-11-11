@@ -13,5 +13,6 @@
 	<classpathentry kind="lib" path="JARs/jandex-1.2.2.Final.jar"/>
 	<classpathentry kind="lib" path="JARs/javassist-3.18.1-GA.jar"/>
 	<classpathentry kind="lib" path="JARs/jboss-logging-3.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="JARs/postgresql-9.4.1211.jre6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

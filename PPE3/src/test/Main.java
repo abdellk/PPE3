@@ -18,7 +18,7 @@ import controleur.Utilisateurs;
 public class Main {
 
 	public static void main(String[] args) throws ParseException {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPA");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgresql");
 		EntityManager em = emf.createEntityManager();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("y-M-d");
