@@ -1,6 +1,5 @@
 package test;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +17,7 @@ import controleur.Utilisateurs;
 public class Main {
 
 	public static void main(String[] args) throws ParseException {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("postgresql");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
 		EntityManager em = emf.createEntityManager();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("y-M-d");
@@ -32,25 +31,33 @@ public class Main {
 		Action ac4 = new Action("lire", new Date(), "Soufian AIT TIRITE", "droit de lecture");
 		
 		Roles administrateur = new Roles("Administrateur", new Date(), "Soufian AIT TIRITE", "TOUS LES DROITS");
-		Roles particulier = new Roles("Magasinier", new Date(), "Soufian AIT TIRITE", "peut lire, ajouter et modifier des commandes");
-		Roles magasin = new Roles("Commercial", new Date(), "Soufian AIT TIRITE", "peut lire, ajouter modifier ou supprimer les commandes");
+		Roles particulier = new Roles("Particulier", new Date(), "Soufian AIT TIRITE", "peut lire, ajouter et modifier des commandes");
+		Roles magasin = new Roles("Magasin", new Date(), "Soufian AIT TIRITE", "peut lire, ajouter modifier ou supprimer les commandes");
 		/*
 		Roles_action admin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, administrateur);
 		Roles_action admin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac2, administrateur);
 		Roles_action admin3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac3, administrateur);
 		Roles_action admin4 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, administrateur);		
 
-		Roles_action magasinier1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac2, magasinier);
-		Roles_action magasinier2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, magasinier);
-		Roles_action magasinier3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, magasinier);
+		Roles_action particulier1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac2, magasinier);
+		Roles_action particulier2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, magasinier);
+		Roles_action particulier3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, magasinier);
 		
-		Roles_action commercial1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac3, commercial);
-		Roles_action commercial2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, commercial);
-		Roles_action commercial3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, commercial);
+		Roles_action magasin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac3, magasin);
+		Roles_action magasin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, magasin);
+		Roles_action magasin3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, magasin);
 		
 		Roles_utilisateurs soufian_admin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u1, administrateur);
-		Roles_utilisateurs steven_commercial= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u2, commercial);
+		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u2, magasin);
 		*/
+		Roles_utilisateurs soufian_admin= new Roles_utilisateurs(new Date(), "Soufian AIT TIRITE");
+		soufian_admin.setRole(administrateur);
+		soufian_admin.setUtilisateur(u1);
+
+		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(new Date(), "Soufian AIT TIRITE");
+		steven_magasin.setRole(magasin);
+		steven_magasin.setUtilisateur(u2);
+		
 		Roles_action admin1 = new Roles_action(new Date(), "Soufian AIT TIRITE");
 		Roles_action admin2 = new Roles_action(new Date(), "Soufian AIT TIRITE");
 		Roles_action admin3 = new Roles_action(new Date(), "Soufian AIT TIRITE");
@@ -114,10 +121,10 @@ public class Main {
 		em.persist(magasin1);
 		em.persist(magasin2);
 		em.persist(magasin3);
-		/*
+		
 		em.persist(soufian_admin);
-		em.persist(steven_commercial);
-		*/
+		em.persist(steven_magasin);
+	
 		em.getTransaction().commit();
 		em.close();
 	}
