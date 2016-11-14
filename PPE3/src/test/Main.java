@@ -51,48 +51,48 @@ public class Main {
 		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u2, magasin);
 		*/
 		Roles_utilisateurs soufian_admin= new Roles_utilisateurs(new Date(), "Soufian AIT TIRITE");
-		soufian_admin.setRole(administrateur);
-		soufian_admin.setUtilisateur(u1);
+		u1.ajoutRoles(soufian_admin);
+		administrateur.ajoutUtilisateur(soufian_admin);
 
 		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(new Date(), "Soufian AIT TIRITE");
-		steven_magasin.setRole(magasin);
-		steven_magasin.setUtilisateur(u2);
+		magasin.ajoutUtilisateur(steven_magasin);
+		u2.ajoutRoles(steven_magasin);
 		
 		Roles_action admin1 = new Roles_action(new Date(), "Soufian AIT TIRITE");
 		Roles_action admin2 = new Roles_action(new Date(), "Soufian AIT TIRITE");
 		Roles_action admin3 = new Roles_action(new Date(), "Soufian AIT TIRITE");
 		Roles_action admin4 = new Roles_action(new Date(), "Soufian AIT TIRITE");
 		
-		admin1.setAction(ac1);
-		admin1.setRole(administrateur);
-		admin2.setAction(ac2);
-		admin2.setRole(administrateur);
-		admin3.setAction(ac3);
-		admin3.setRole(administrateur);
-		admin4.setAction(ac4);
-		admin4.setRole(administrateur);
+		ac1.ajoutRole(admin1);
+		administrateur.ajoutAction(admin1);
+		ac2.ajoutRole(admin2);
+		administrateur.ajoutAction(admin2);
+		ac3.ajoutRole(admin3);
+		administrateur.ajoutAction(admin3);
+		ac4.ajoutRole(admin4);
+		administrateur.ajoutAction(admin4);
 		
 		Roles_action particulier1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
 		Roles_action particulier2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
 		Roles_action particulier3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
 		
-		particulier1.setAction(ac2);
-		particulier1.setRole(particulier);
-		particulier2.setAction(ac1);
-		particulier2.setRole(particulier);
-		particulier3.setAction(ac4);
-		particulier3.setRole(particulier);
+		ac2.ajoutRole(particulier1);
+		particulier.ajoutAction(particulier1);
+		ac1.ajoutRole(particulier2);
+		particulier.ajoutAction(particulier2);
+		ac4.ajoutRole(particulier3);
+		particulier.ajoutAction(particulier3);
 		
 		Roles_action magasin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
 		Roles_action magasin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
 		Roles_action magasin3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
 		
-		magasin1.setAction(ac3);
-		magasin1.setRole(magasin);
-		magasin2.setAction(ac1);
-		magasin2.setRole(magasin);
-		magasin3.setAction(ac4);
-		magasin3.setRole(magasin);
+		ac3.ajoutRole(magasin1);
+		magasin.ajoutAction(magasin1);
+		ac1.ajoutRole(magasin2);
+		magasin.ajoutAction(magasin2);
+		ac4.ajoutRole(magasin3);
+		magasin.ajoutAction(magasin3);
 		
 		
 		em.getTransaction().begin();
