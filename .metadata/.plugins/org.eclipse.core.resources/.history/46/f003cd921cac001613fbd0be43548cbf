@@ -58,10 +58,6 @@ public class Utilisateurs {
 		this.password = password;
 		this.modifier_par = modifier_par;
 	}
-	
-	public Utilisateurs() {
-		super();
-	}
 
 	public void Connexion(){
 		this.message=" ";
@@ -86,6 +82,10 @@ public class Utilisateurs {
 			em.getTransaction().commit();
 			em.close();
 		}
+	}
+	
+	public Utilisateurs() {
+		super();
 	}
 
 	public String getEmail() {

@@ -14,7 +14,7 @@
 	<h:form>
 	<h:panelGrid column="2">
 	<h:outputLabel value="Identifiant :"/>
-	<h:inputText value="#{utilisateurs.prenom}"/>
+	<h:inputText value="#{utilisateurs.nom}"/>
 	<h:outputLabel value="Mot de Passe :"/>
 	<h:inputText value="#{utilisateurs.password}"/>
 	<h:commandButton action="#{utilisateurs.Connexion}" value="Connexion">

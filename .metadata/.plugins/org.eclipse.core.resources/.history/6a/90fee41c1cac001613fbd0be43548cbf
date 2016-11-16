@@ -58,10 +58,6 @@ public class Utilisateurs {
 		this.password = password;
 		this.modifier_par = modifier_par;
 	}
-	
-	public Utilisateurs() {
-		super();
-	}
 
 	public void Connexion(){
 		this.message=" ";
@@ -70,9 +66,9 @@ public class Utilisateurs {
 			em.getTransaction().begin();
 			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM UTILISATEURS WHERE PRENOM='"+prenom+"'", this.getClass()).getSingleResult();
 			if(user.getPassword().equals(password)){
-				message="Bienvenue ! "+user.getNom()+" "+user.getPrenom()+", Rôle(s):\n";
+				message="Bienvenue ! "+user.getNom()+" "+user.getPrenom()+", Rôle(s): ";
 				for(Roles_utilisateurs iter : user.getRoles()){
-					message += iter.getRole().getRole()+"\n";
+					
 				}
 				
 			}else{
@@ -86,6 +82,10 @@ public class Utilisateurs {
 			em.getTransaction().commit();
 			em.close();
 		}
+	}
+	
+	public Utilisateurs() {
+		super();
 	}
 
 	public String getEmail() {
