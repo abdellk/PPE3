@@ -1,0 +1,84 @@
+package controleur;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
+@Entity
+@Table(name="utilisateurs")
+@ManagedBean(name="utilisateurs")
+@RequestScoped
+public class Utilisateurs {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idut;
+	private String email;
+	private String nom;
+	private String prenom;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date derniere_mise_a_jour;
+	private String modifier_par;
+	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.ALL)
+	private List<Roles_utilisateurs> roles = new ArrayList<Roles_utilisateurs>();
+
+	private String message;
+	private String password;
+	@ManagedProperty(value="#{fournisseur}")
+	private GerantPersistence fournisseur;
+	
+	public void ajoutRoles(Roles_utilisateurs ru){
+		roles.add(ru);
+		ru.setUtilisateur(this);
+	}
+	
+	public Utilisateurs(String email, String nom, String prenom, Date derniere_mise_a_jour,
+			String password, String modifier_par) {
+		super();
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.derniere_mise_a_jour = derniere_mise_a_jour;
+		this.password = password;
+		this.modifier_par = modifier_par;
+	}
+
+	public void Connexion(){
+		this.message=" ";
+		EntityManager em = fournisseur.fournir();
+		em.getTransaction().begin();
+		@SuppressWarnings("unchecked")
+		List<Utilisateurs> resultat = em.createNativeQuery("SELECT * FROM PERSONNE WHERE id="+nom+" AND password = "+password ,Utilisateurs.class).getResultList();
+		em.getTransaction().commit();
+		em.close();
+		
+		if(resultat.isEmpty()){
+			this.message="erreur de connexion";
+		}else{
+			for(Utilisateurs iter: resultat){
+				this.message= "Bienvenue "+iter.getNom()+" "+iter.getPrenom();
+			}
+		}
+	}
+	
+	public Utilisateurs() {
+		super();
+	}
+	
+
+}

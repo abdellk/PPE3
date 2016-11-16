@@ -27,7 +27,7 @@ public class Action {
 	private String modifier_par;
 	private String description;
 	@OneToMany(mappedBy="action", cascade=CascadeType.ALL)
-	private List<Roles_action> actions = new ArrayList<>();
+	private List<Roles_action> actions = new ArrayList<Roles_action>();
 	
 	public Action(String action, Date derniere_mise_a_jour, String modifier_par, String description) {
 		super();

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html">
+<f:view contentType="text/html"/>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>FORMULAIRE</title>
+</head>
+<body>
+	<h:form>
+	<h:panelGrid column="2">
+	<h:outputLabel value="Nom :"/>
+	<h:inputText value="#{personne.nom}"/>
+	<h:outputLabel value="Prénom :"/>
+	<h:inputText value="#{personne.prenom}"/>
+	<h:outputLabel value="Courriel :"/>
+	<h:inputText value="#{personne.courriel}"/>
+	<h:commandButton action="#{personne.enregistrer}" value="Enregistrer"/>
+	</h:panelGrid>
+	</h:form>
+</body>
+</html>

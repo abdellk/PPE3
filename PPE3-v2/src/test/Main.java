@@ -22,8 +22,8 @@ public class Main {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("y-M-d");
 		
-		Utilisateurs u1 = new Utilisateurs("soufian.a@free.fr", "AIT TIRITE", "SOUFIAN", new Date(), "soufian AIT TIRITE");
-		Utilisateurs u2 = new Utilisateurs("steven@blabla.fr", "DE CARVALHO", "STEVEN", sdf.parse("2016-11-09"), "soufian AIT TIRITE");
+		Utilisateurs u1 = new Utilisateurs("soufian.a@free.fr", "AIT TIRITE", "SOUFIAN", new Date(), "test", "soufian AIT TIRITE");
+		Utilisateurs u2 = new Utilisateurs("steven@blabla.fr", "DE CARVALHO", "STEVEN", new Date(), "test", "soufian AIT TIRITE");
 		
 		Action ac1 = new Action("modifier", new Date(), "Soufian AIT TIRITE", "droit de modification");
 		Action ac2 = new Action("ajouter", new Date(), "Soufian AIT TIRITE", "droit d'ajout");

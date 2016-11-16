@@ -27,9 +27,9 @@ public class Roles {
 	private String modifier_par;
 	private String description;
 	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
-	private List<Roles_utilisateurs> utilisateurs = new ArrayList<>();
+	private List<Roles_utilisateurs> utilisateurs = new ArrayList<Roles_utilisateurs>();
 	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
-	private List<Roles_action> action = new ArrayList<>();
+	private List<Roles_action> action = new ArrayList<Roles_action>();
 
 	public void ajoutAction(Roles_action ra){
 		action.add(ra);
