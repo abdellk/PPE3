@@ -1,0 +1,19 @@
+package controleur;
+
+public class GerantPersistence {
+	
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAetJSF");
+	
+	public FournisseurDeGerantDePersistance() {
+		super();
+	}
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+	public void setEmf(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
+	public EntityManager fournir() {
+		return emf.createEntityManager();
+	}
+}

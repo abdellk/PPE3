@@ -21,8 +21,8 @@
 <fullyQualifiedTypeName name="controleur.Action"/>
 <fullyQualifiedTypeName name="controleur.Roles_action"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-<fullyQualifiedTypeName name="controleur.Roles_utilisateurs"/>
 <fullyQualifiedTypeName name="controleur.Roles"/>
 <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
+<fullyQualifiedTypeName name="controleur.Roles_utilisateurs"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>
