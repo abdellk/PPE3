@@ -1,0 +1,16 @@
+package client;
+
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.UriBuilder;
+
+public class ClientREST {
+
+	public static void main(String[] args) {
+		Client client = ClientBuilder.newClient();
+		WebTarget cible = client.target(UriBuilder.fromPath("url"));
+		WebTarget ciblefinale = cible.path("dto");
+	}
+
+}

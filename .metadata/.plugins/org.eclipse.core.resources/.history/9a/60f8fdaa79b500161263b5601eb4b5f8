@@ -1,0 +1,5 @@
+ackage service;
+
+public class MessageDTO {
+
+}

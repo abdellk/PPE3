@@ -1,0 +1,9 @@
+package client;
+
+public class ClientREST {
+
+	public static void main(String[] args) {
+		
+	}
+
+}
