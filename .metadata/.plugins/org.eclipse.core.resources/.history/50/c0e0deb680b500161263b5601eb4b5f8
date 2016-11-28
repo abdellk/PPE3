@@ -1,0 +1,11 @@
+package controleur;
+
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean(name="utilisateur")
+@RequestScoped
+public class Utilisateur {
+
+	
+}

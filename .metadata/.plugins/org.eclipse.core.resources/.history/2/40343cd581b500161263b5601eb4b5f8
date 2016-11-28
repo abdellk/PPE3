@@ -1,0 +1,14 @@
+package controleur;
+
+import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean(name="authentification")
+@RequestScoped
+public class Connexion {
+
+	private String login;
+	private String password;
+	
+	
+}
