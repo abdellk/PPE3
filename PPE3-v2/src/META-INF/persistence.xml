@@ -13,10 +13,10 @@ version="2.0">
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
 			<property name="javax.persistence.jdbc.user" value="derby"/>
 			<property name="javax.persistence.jdbc.password" value="derby"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby://tomcatderby:1530/soufianPPE3v2"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby://172.17.0.4:1530/soufianPPE3v2"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
 			<property name="hibernate.max_fetch_depth" value="3"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
 		</properties>
 	</persistence-unit>
 </persistence>
