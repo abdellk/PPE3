@@ -12,6 +12,8 @@ public class ServiceREST {
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public MessageDTO getDTO(@QueryParam("login")String login, @QueryParam("password")String password){
+		
+		
 		MessageDTO message = new MessageDTO("Bienvenue "+login, "Administrateur");
 		return message;
 	}
