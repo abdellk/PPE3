@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     30 nov. 2016 13:38:46                                                        
+
+     project    
+     description
+                   
+     invite                                                                
+     ====================================================================== -->
+<project name="project" default="execution">
+	
+    <target name="execution" depends="compilation">
+        <java classname="vue.Bonjour" fork="true" classpath="src/"></java>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compilation">
+    	<javac srcdir="src/"></javac>
+    </target>
+
+</project>
