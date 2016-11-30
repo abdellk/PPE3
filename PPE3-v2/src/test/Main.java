@@ -8,11 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import controleur.Action;
-import controleur.Roles;
-import controleur.Roles_action;
-import controleur.Roles_utilisateurs;
-import controleur.Utilisateurs;
+import modele.Action;
+import modele.Roles;
+import modele.Roles_action;
+import modele.Roles_utilisateurs;
+import modele.Utilisateurs;
 
 public class Main {
 

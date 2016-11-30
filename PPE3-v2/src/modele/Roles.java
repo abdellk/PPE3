@@ -1,4 +1,4 @@
-package controleur;
+package modele;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,43 +15,50 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="action")
-public class Action {
+@Table(name="roles")
+public class Roles {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ida;
-	private String action;
+	private int idr;
+	private String role;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date derniere_mise_a_jour;
 	private String modifier_par;
 	private String description;
-	@OneToMany(mappedBy="action", cascade=CascadeType.ALL)
-	private List<Roles_action> actions = new ArrayList<Roles_action>();
+	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
+	private List<Roles_utilisateurs> utilisateurs = new ArrayList<Roles_utilisateurs>();
+	@OneToMany(mappedBy="role", cascade=CascadeType.ALL)
+	private List<Roles_action> action = new ArrayList<Roles_action>();
+
+	public void ajoutAction(Roles_action ra){
+		action.add(ra);
+		ra.setRole(this);
+	}
 	
-	public Action(String action, Date derniere_mise_a_jour, String modifier_par, String description) {
+	public void ajoutUtilisateur(Roles_utilisateurs ru){
+		utilisateurs.add(ru);
+		ru.setRole(this);
+	}
+	
+	public Roles(String role, Date derniere_mise_a_jour, String modifier_par, String description) {
 		super();
-		this.action = action;
+		this.role = role;
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
 		this.description = description;
 	}
-	
-	public void ajoutRole(Roles_action ra){
-		actions.add(ra);
-		ra.setAction(this);
-	}
 
-	public Action() {
+	public Roles() {
 		super();
 	}
 
-	public String getAction() {
-		return action;
+	public String getRole() {
+		return role;
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public Date getDerniere_mise_a_jour() {
@@ -79,13 +86,18 @@ public class Action {
 	}
 
 	public int getId() {
-		return ida;
+		return idr;
+	}
+
+	public List<Roles_utilisateurs> getUtilisateurs() {
+		return utilisateurs;
 	}
 
 	@Override
 	public String toString() {
-		return "Action [id=" + ida + ", action=" + action + ", derniere_mise_a_jour=" + derniere_mise_a_jour
-				+ ", modifier_par=" + modifier_par + ", description=" + description + "]";
+		return "Roles [idr=" + idr + ", role=" + role + ", derniere_mise_a_jour=" + derniere_mise_a_jour
+				+ ", modifier_par=" + modifier_par + ", description=" + description + ", utilisateurs=" + utilisateurs
+				+ "]";
 	}
 	
 	

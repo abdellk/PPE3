@@ -1,4 +1,4 @@
-package controleur;
+package modele;
 
 import javax.annotation.PreDestroy;
 import javax.faces.bean.ApplicationScoped;
