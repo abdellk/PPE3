@@ -31,7 +31,7 @@ public class Connexion {
 
 	public void connect(){
 		Client client = ClientBuilder.newClient();
-		WebTarget cible = client.target(UriBuilder.fromPath("http://172.17.0.3:8080/restful-dto-jaxb"));
+		WebTarget cible = client.target(UriBuilder.fromPath("http://tomcatserver:8080/restful-dto-jaxb"));
 		WebTarget ciblefinale = cible.path("dto");
 		MessageDTO dto = ciblefinale.queryParam("login", this.login).queryParam("password", this.password).request(MediaType.APPLICATION_XML).get(MessageDTO.class);
 		this.message = dto.getBienvenue()+" "+dto.getRole();
