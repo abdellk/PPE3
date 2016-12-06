@@ -1,14 +1,14 @@
 package controleur;
 
 import javax.annotation.PreDestroy;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 @ManagedBean(name="fournisseur", eager=true)
-@ApplicationScoped
+@RequestScoped
 public class GerantPersistence {
 	
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");

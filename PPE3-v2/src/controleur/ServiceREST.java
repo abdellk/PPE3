@@ -15,7 +15,7 @@ import modele.Utilisateurs;
 public class ServiceREST {
 	
 	@ManagedProperty(value="#{fournisseur}")
-	private GerantPersistence fournisseur;
+	private GerantPersistence fournisseur = new GerantPersistence();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
@@ -33,11 +33,11 @@ public class ServiceREST {
 				}
 				message = new MessageDTO(msg, role);
 			}else{
-				message= new MessageDTO("mauvais mot de passe !", "");
+				message= new MessageDTO("mauvais mot de passe !", ".");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message= new MessageDTO("Email inconnue !", "");
+			message= new MessageDTO("Email inconnue !", ".");
 		}
 		finally {
 			em.getTransaction().commit();

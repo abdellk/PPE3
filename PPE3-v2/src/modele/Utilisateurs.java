@@ -17,7 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="utilisateurs")
@@ -34,8 +33,6 @@ public class Utilisateurs {
 	private String modifier_par;
 	@OneToMany(mappedBy="utilisateur", cascade=CascadeType.ALL)
 	private List<Roles_utilisateurs> roles = new ArrayList<Roles_utilisateurs>();
-	@Transient
-	private String message;
 	private String password;
 	
 	public void ajoutRoles(Roles_utilisateurs ru){
@@ -122,7 +119,7 @@ public class Utilisateurs {
 	public void setModifier_par(String modifier_par) {
 		this.modifier_par = modifier_par;
 	}
-
+/*
 	public String getMessage() {
 		return message;
 	}
@@ -130,7 +127,7 @@ public class Utilisateurs {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
+*/
 	public String getPassword() {
 		return password;
 	}
