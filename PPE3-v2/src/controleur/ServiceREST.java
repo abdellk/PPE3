@@ -1,7 +1,8 @@
 package controleur;
 
-import javax.faces.bean.ManagedProperty;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -11,20 +12,18 @@ import javax.ws.rs.core.MediaType;
 import modele.Roles_utilisateurs;
 import modele.Utilisateurs;
 
-@Path("dto")
+@Path("/dto")
 public class ServiceREST {
-	
-	@ManagedProperty(value="#{fournisseur}")
-	private GerantPersistence fournisseur = new GerantPersistence();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
 	public MessageDTO getDTO(@QueryParam("login")String login, @QueryParam("password")String password){
 		MessageDTO message=null;
-		EntityManager em = fournisseur.fournir();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
+		EntityManager em = emf.createEntityManager();
 		try{
 			em.getTransaction().begin();
-			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM UTILISATEURS WHERE PRENOM='"+login+"'", this.getClass()).getSingleResult();
+			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM utilisateurs WHERE PRENOM='"+login+"'", Utilisateurs.class).getSingleResult();
 			if(user.getPassword().equals(password)){
 				String msg="Bienvenue ! "+user.getNom()+" "+user.getPrenom();
 				String role = ", Rôle(s):\n";
