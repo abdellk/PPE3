@@ -119,7 +119,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="JARs/javassist-3.18.1-GA.jar"/>
 	<classpathentry kind="lib" path="JARs/jboss-logging-3.3.0.Final.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
@@ -220,7 +219,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="JARs/ext/persistence-api-1.0.jar"/>
 	<classpathentry kind="lib" path="JARs/ext/validation-api-1.1.0.Final.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
