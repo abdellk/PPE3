@@ -14,11 +14,11 @@ public class ClientTest {
 	public static void main(String[] args) {
 		
 		Client client = ClientBuilder.newClient();
-		WebTarget cible = client.target(UriBuilder.fromPath("http://172.17.0.2:8080/PPE3v2"));
+		WebTarget cible = client.target(UriBuilder.fromPath("http://172.17.0.5:8080/PPE3v2/"));
 		WebTarget ciblefinale = cible.path("dto");
-		String dtotext = ciblefinale.queryParam("login", "soufian").queryParam("password", "test").request(MediaType.TEXT_PLAIN).get(Response.class).toString();
+		String dtotext = ciblefinale.queryParam("login", "SOUFIAN").queryParam("password", "test").request(MediaType.TEXT_PLAIN).get(Response.class).toString();
 		System.out.println(dtotext);
-		MessageDTO dto = ciblefinale.queryParam("login", "soufian").queryParam("password", "test").request(MediaType.APPLICATION_XML).get(MessageDTO.class);
+		MessageDTO dto = ciblefinale.queryParam("login", "SOUFIAN").queryParam("password", "test").request(MediaType.APPLICATION_XML).get(MessageDTO.class);
 		System.out.println(dto.getBienvenue()+" "+dto.getRole());
 		
 	}
