@@ -28,7 +28,7 @@ public class ServiceREST {
 				String msg="Bienvenue ! "+user.getNom()+" "+user.getPrenom();
 				String role = ", Rôle(s):\n";
 				for(Roles_utilisateurs iter : user.getRoles()){
-					role += iter.getRole().getRole()+"\n";
+					role += iter.getRole().getRole()+", \n";
 				}
 				message = new MessageDTO(msg, role);
 			}else{
