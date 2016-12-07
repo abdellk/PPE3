@@ -1,6 +1,5 @@
 package controleur;
 
-import javax.annotation.PreDestroy;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManager;
@@ -11,22 +10,26 @@ import javax.persistence.Persistence;
 @RequestScoped
 public class GerantPersistence {
 	
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
-	
-	public GerantPersistence() {
-		super();
-	}
-	public EntityManagerFactory getEmf() {
-		return emf;
-	}
-	public void setEmf(EntityManagerFactory emf) {
-		this.emf = emf;
-	}
 	public EntityManager fournir() {
 		return emf.createEntityManager();
 	}
-	@PreDestroy
-	public void fin(){
+	
+	public static GerantPersistence getInstance() {
+		if(instance == null)
+			instance = new GerantPersistence();
+		
+		return instance;
+	}
+	
+	
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("authentification");
+	private static GerantPersistence instance = null;
+
+	private GerantPersistence() {
+		super();
+	}
+
+	public void detruire() {
 		emf.close();
 	}
 }
