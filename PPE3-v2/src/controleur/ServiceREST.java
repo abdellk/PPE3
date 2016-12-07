@@ -32,11 +32,11 @@ public class ServiceREST {
 				}
 				message = new MessageDTO(msg, role);
 			}else{
-				message= new MessageDTO("mauvais mot de passe !", null);
+				message= new MessageDTO("mauvais mot de passe !", "");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
-			message= new MessageDTO("Email inconnue !", null);
+			message= new MessageDTO("Email inconnue !", "");
 		}
 		finally {
 			em.getTransaction().commit();
