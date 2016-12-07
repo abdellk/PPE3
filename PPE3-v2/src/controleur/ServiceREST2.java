@@ -20,7 +20,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import modele.Utilisateurs;
 import controleur.GerantPersistence;
 
-@Path("dto2")
+@Path("dtoJOURNAL")
 public class ServiceREST2 {
 	
 	private final static String QUEUE_NAME = "journal";
