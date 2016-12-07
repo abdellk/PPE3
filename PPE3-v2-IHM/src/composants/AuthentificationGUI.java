@@ -8,6 +8,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 
+import com.sun.research.ws.wadl.Response;
+
 import ressources.MessageDTO;
 
 @ManagedBean(name="authentification")
@@ -27,9 +29,10 @@ public class AuthentificationGUI {
 		Client client = ClientBuilder.newClient();
 		WebTarget cible = client.target(UriBuilder.fromPath("http://tomcatauthentificateur:8080/PPE3v2/"));
 		WebTarget ciblefinale = cible.path("dto");
-		MessageDTO dto = ciblefinale.queryParam("email", email).queryParam("password", password)
+		MessageDTO dto = ciblefinale.queryParam("login", email).queryParam("password", password)
 				.request(MediaType.APPLICATION_XML).get(MessageDTO.class);
-		message = dto.getBienvenue()+dto.getRole();
+		
+		message = " message: "+dto.getBienvenue()+dto.getRole();
 	}
 
 	public String getEmail() {
