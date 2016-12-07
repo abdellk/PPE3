@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.ManagedProperty;
-//import javax.faces.bean.RequestScoped;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-//import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -55,31 +51,6 @@ public class Utilisateurs {
 		super();
 	}
 
-	/*public void Connexion(){
-		this.message=" ";
-		EntityManager em = fournisseur.fournir();
-		try{
-			em.getTransaction().begin();
-			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM UTILISATEURS WHERE PRENOM='"+prenom+"'", this.getClass()).getSingleResult();
-			if(user.getPassword().equals(password)){
-				message="Bienvenue ! "+user.getNom()+" "+user.getPrenom()+", Rôle(s):\n";
-				for(Roles_utilisateurs iter : user.getRoles()){
-					message += iter.getRole().getRole()+"\n";
-				}
-				
-			}else{
-				message="mauvais mot de passe !";
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-			message="Raté !";
-		}
-		finally {
-			em.getTransaction().commit();
-			em.close();
-		}
-	}*/
-
 	public String getEmail() {
 		return email;
 	}
@@ -119,15 +90,7 @@ public class Utilisateurs {
 	public void setModifier_par(String modifier_par) {
 		this.modifier_par = modifier_par;
 	}
-/*
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-*/
+	
 	public String getPassword() {
 		return password;
 	}
@@ -135,14 +98,6 @@ public class Utilisateurs {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	/*public GerantPersistence getFournisseur() {
-		return fournisseur;
-	}
-
-	public void setFournisseur(GerantPersistence fournisseur) {
-		this.fournisseur = fournisseur;
-	}*/
 
 	public int getIdut() {
 		return idut;

@@ -23,7 +23,7 @@ public class ServiceREST {
 		EntityManager em = emf.createEntityManager();
 		try{
 			em.getTransaction().begin();
-			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM utilisateurs WHERE PRENOM='"+login+"'", Utilisateurs.class).getSingleResult();
+			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM utilisateurs WHERE EMAIL='"+login+"'", Utilisateurs.class).getSingleResult();
 			if(user.getPassword().equals(password)){
 				String msg="Bienvenue ! "+user.getNom()+" "+user.getPrenom();
 				String role = ", Rôle(s):\n";
