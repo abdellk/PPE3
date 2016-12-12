@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,9 +26,10 @@ import com.rabbitmq.client.Envelope;
 
 import modele.Journal;
 
-@ManagedBean(name="journalisateur", eager=true)
-@ApplicationScoped
-public class Journalisateur {
+
+@WebServlet(urlPatterns="/*",loadOnStartup=1)
+public class Journalisateur extends HttpServlet {
+
 	
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("journal");
 	private final static String QUEUE_NAME = "journal";
@@ -33,30 +37,41 @@ public class Journalisateur {
 	private Connection connection = null;
 	private Channel channel = null;
 	
-	@PostConstruct
-	public void initialisation() {
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
 		try {
 				consommer();
-		} catch (Exception e) {	e.printStackTrace(); }
+		} catch (Exception e) {e.printStackTrace();
+		}
+	}
+	
+	public void service(HttpServletRequest req, HttpServletResponse rep) {		
 	}
 	
 	public void consommer() throws IOException, TimeoutException {
+		
 		ConnectionFactory factory = new ConnectionFactory();
 	    factory.setHost("rabbitmq");
-	    Connection connection = factory.newConnection();
-	    Channel channel = connection.createChannel();
+	    connection = factory.newConnection();
+	    channel = connection.createChannel();
 	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);	    
+	    
 	    Consumer consumer = new DefaultConsumer(channel) {
 	        @Override
 	        public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
 	            throws IOException {
+	       
 	          message = new String(body, "UTF-8");
+	          System.out.println("MESSAGE =======> " + message);
+	          journaliser();
 	        }
 	      };
+	      System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	      channel.basicConsume(QUEUE_NAME, true, consumer);
 	}
 	
 	private void journaliser() {
+		
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();
 		String donneesMembres[] = StringUtils.split(message, "|");
@@ -72,15 +87,12 @@ public class Journalisateur {
 		em.close();
 	}
 	
+	
 	public Journalisateur() {
-		super();
+	}
+	
+	public void destroy() {
+		emf.close();
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}		
 }
