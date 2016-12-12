@@ -37,22 +37,23 @@ public class ServiceREST {
 			em.getTransaction().begin();
 			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM utilisateurs WHERE EMAIL='"+login+"'", Utilisateurs.class).getSingleResult();
 			
+			String nomprenom = user.getNom() + " " + user.getPrenom();
 			if(user.getPassword().equals(password)){
-				String msg="Bienvenue ! "+user.getNom()+" "+user.getPrenom();
+				String msg="Bienvenue ! "+ nomprenom;
 				String role = ", Rôle(s):\n";
 				for(Roles_utilisateurs iter : user.getRoles()){
 					role += iter.getRole().getRole()+", \n";
 				}
 				message = new MessageDTO(msg, role);
-				messageJournal = login + " accès " + new Date();
+				messageJournal = login + "|" + nomprenom + "|succes|" + new Date();
 			}else{
-				messageJournal = login + " mauvais mot de passe " + new Date();
+				messageJournal = login + "|" + nomprenom + "|mauvais mot de passe|" + new Date();
 				message = new MessageDTO("mauvais mot de passe", "");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 			message= new MessageDTO("Email inconnue !", "");
-			messageJournal = login + " utilisateur inconnu";
+			messageJournal = login + "|null|utilisateur inconnu|" + new  Date();
 		}
 		finally {
 			em.getTransaction().commit();
