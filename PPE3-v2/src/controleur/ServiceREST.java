@@ -1,5 +1,9 @@
 package controleur;
 
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,8 +16,15 @@ import javax.ws.rs.core.MediaType;
 import modele.Roles_utilisateurs;
 import modele.Utilisateurs;
 
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
 @Path("/dto")
 public class ServiceREST {
+
+	private final static String QUEUE_NAME = "journal";
+	private String messageJournal;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
@@ -22,8 +33,10 @@ public class ServiceREST {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
 		EntityManager em = emf.createEntityManager();
 		try{
+			
 			em.getTransaction().begin();
 			Utilisateurs user= (Utilisateurs) em.createNativeQuery("SELECT * FROM utilisateurs WHERE EMAIL='"+login+"'", Utilisateurs.class).getSingleResult();
+			
 			if(user.getPassword().equals(password)){
 				String msg="Bienvenue ! "+user.getNom()+" "+user.getPrenom();
 				String role = ", Rôle(s):\n";
@@ -31,18 +44,38 @@ public class ServiceREST {
 					role += iter.getRole().getRole()+", \n";
 				}
 				message = new MessageDTO(msg, role);
+				messageJournal = login + " accès " + new Date();
 			}else{
-				message= new MessageDTO("mauvais mot de passe !", "");
+				messageJournal = login + " mauvais mot de passe " + new Date();
+				message = new MessageDTO("mauvais mot de passe", "");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
 			message= new MessageDTO("Email inconnue !", "");
+			messageJournal = login + " utilisateur inconnu";
 		}
 		finally {
 			em.getTransaction().commit();
 			em.close();
+			try {
+					journaliser();
+			} catch (Exception e) {e.printStackTrace();
+			}	
 		}
 		return message;
+	}
+	
+	
+	private void journaliser() throws IOException, TimeoutException {
+		ConnectionFactory factory = new ConnectionFactory();
+	    factory.setHost("rabbitmq");
+	    Connection connexion = (Connection) factory.newConnection();
+	    Channel channel = connexion.createChannel();
+	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    channel.basicPublish("", QUEUE_NAME, null, messageJournal.getBytes());
+	    System.out.println(" [x] Envoyé '" + messageJournal + "'");
+	    channel.close();
+	    connexion.close();
 	}
 	
 }
