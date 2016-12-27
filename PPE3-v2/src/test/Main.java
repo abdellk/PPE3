@@ -92,24 +92,6 @@ public class Main {
 		administrateur.ajoutAction(administrateur_consulter_indicateurs);
 		consulter_indicateurs.ajoutRole(administrateur_consulter_indicateurs);
 		
-		/*
-		Roles_action admin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, administrateur);
-		Roles_action admin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac2, administrateur);
-		Roles_action admin3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac3, administrateur);
-		Roles_action admin4 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, administrateur);		
-
-		Roles_action particulier1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac2, magasinier);
-		Roles_action particulier2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, magasinier);
-		Roles_action particulier3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, magasinier);
-		
-		Roles_action magasin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac3, magasin);
-		Roles_action magasin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, magasin);
-		Roles_action magasin3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac4, magasin);
-		
-		Roles_utilisateurs soufian_admin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u1, administrateur);
-		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u2, magasin);
-		*/
-		
 		
 		
 		em.getTransaction().begin();
