@@ -22,17 +22,76 @@ public class Main {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("y-M-d");
 		
-		Utilisateurs u1 = new Utilisateurs("soufian.a@free.fr", "AIT TIRITE", "SOUFIAN", new Date(), "test", "soufian AIT TIRITE");
-		Utilisateurs u2 = new Utilisateurs("steven@blabla.fr", "DE CARVALHO", "STEVEN", new Date(), "test", "soufian AIT TIRITE");
+		Utilisateurs soufian = new Utilisateurs("soufian.a@free.fr", "AIT TIRITE", "SOUFIAN", new Date(), "test", "soufian AIT TIRITE");
+		Utilisateurs dupont = new Utilisateurs("dupontc@blabla.fr", "DUPONT", "CHRISTOPHE", new Date(), "dupont00", "soufian AIT TIRITE");
+		Utilisateurs dubois = new Utilisateurs("dubois@blabla.fr", "DUBOIS", "MANUEL", new Date(), "dubois11", "soufian AIT TIRITE");
+		Utilisateurs deschamps = new Utilisateurs("deschamps@blabla.fr", "DESCHAMPS", "DIDIER", new Date(), "didier22", "soufian AIT TIRITE");
 		
-		Action ac1 = new Action("modifier", new Date(), "Soufian AIT TIRITE", "droit de modification");
-		Action ac2 = new Action("ajouter", new Date(), "Soufian AIT TIRITE", "droit d'ajout");
-		Action ac3 = new Action("supprimer", new Date(), "Soufian AIT TIRITE", "droit de suppression");
-		Action ac4 = new Action("lire", new Date(), "Soufian AIT TIRITE", "droit de lecture");
+		Action rediger_annonce = new Action("Rédiger une annonce", new Date(), "Soufian AIT TIRITE", "droit de rédaction");
+		Action modifier_annonce = new Action("Modifier une annonce", new Date(), "Soufian AIT TIRITE", "droit de modification");
+		Action supprimer_annonce = new Action("Supprimer une annonce", new Date(), "Soufian AIT TIRITE", "droit de suppression");
+		Action publier_annonce = new Action("Publier une annonce", new Date(), "Soufian AIT TIRITE", "droit de publication");
+		Action vendre_guitare = new Action("Vendre une guitare", new Date(), "Soufian AIT TIRITE", "droit de vendre une guitare");
+		Action gerer_magasin = new Action("Gérer les magasins", new Date(), "Soufian AIT TIRITE", "droit de gérer les magasin");
+		Action gerer_acces = new Action("Gérer les accès", new Date(), "Soufian AIT TIRITE", "droit de gérer les accès");
+		Action consulter_indicateurs = new Action("Consulter les indicateurs", new Date(), "Soufian AIT TIRITE", "droit de consulter les indicateurs");
 		
 		Roles administrateur = new Roles("Administrateur", new Date(), "Soufian AIT TIRITE", "TOUS LES DROITS");
-		Roles particulier = new Roles("Particulier", new Date(), "Soufian AIT TIRITE", "peut lire, ajouter et modifier des commandes");
-		Roles magasin = new Roles("Magasin", new Date(), "Soufian AIT TIRITE", "peut lire, ajouter modifier ou supprimer les commandes");
+		Roles annonceur = new Roles("Annonceur", new Date(), "Soufian AIT TIRITE", "TOUS LES DROITS");
+		Roles magasin = new Roles("Magasin", new Date(), "Soufian AIT TIRITE", "TOUS LES DROITS");
+		
+		Roles_utilisateurs administrateur_soufian = new Roles_utilisateurs(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		administrateur.ajoutUtilisateur(administrateur_soufian);
+		soufian.ajoutRoles(administrateur_soufian);		
+		Roles_utilisateurs annonceur_dupont = new Roles_utilisateurs(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		annonceur.ajoutUtilisateur(annonceur_dupont);
+		dupont.ajoutRoles(annonceur_dupont);
+		Roles_utilisateurs magasin_dubois = new Roles_utilisateurs(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		magasin.ajoutUtilisateur(magasin_dubois);
+		dubois.ajoutRoles(magasin_dubois);
+		Roles_utilisateurs deschamps_administrateur = new Roles_utilisateurs(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		deschamps.ajoutRoles(deschamps_administrateur);
+		administrateur.ajoutUtilisateur(deschamps_administrateur);
+		Roles_utilisateurs deschamps_annonceur = new Roles_utilisateurs(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		deschamps.ajoutRoles(deschamps_annonceur);
+		annonceur.ajoutUtilisateur(deschamps_annonceur);
+		
+		Roles_action annonceur_rediger = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		annonceur.ajoutAction(annonceur_rediger);
+		rediger_annonce.ajoutRole(annonceur_rediger);
+		Roles_action annonceur_modifier = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		annonceur.ajoutAction(annonceur_modifier);
+		modifier_annonce.ajoutRole(annonceur_modifier);
+		Roles_action annonceur_supprimer = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		annonceur.ajoutAction(annonceur_supprimer);
+		supprimer_annonce.ajoutRole(annonceur_supprimer);
+		
+		Roles_action magasin_rediger = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		magasin.ajoutAction(magasin_rediger);
+		rediger_annonce.ajoutRole(magasin_rediger);
+		Roles_action magasin_modifier = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		magasin.ajoutAction(magasin_modifier);
+		modifier_annonce.ajoutRole(magasin_modifier);
+		Roles_action magasin_supprimer = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		magasin.ajoutAction(magasin_supprimer);
+		supprimer_annonce.ajoutRole(magasin_supprimer);
+		Roles_action magasin_publier = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		magasin.ajoutAction(magasin_publier);
+		publier_annonce.ajoutRole(magasin_publier);
+		Roles_action magasin_vendre_guitare = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		magasin.ajoutAction(magasin_vendre_guitare);
+		vendre_guitare.ajoutRole(magasin_vendre_guitare);
+		
+		Roles_action administrateur_gerer_magasin = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		administrateur.ajoutAction(administrateur_gerer_magasin);
+		gerer_magasin.ajoutRole(administrateur_gerer_magasin);
+		Roles_action administrateur_gerer_acces = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		administrateur.ajoutAction(administrateur_gerer_acces);
+		gerer_acces.ajoutRole(administrateur_gerer_acces);
+		Roles_action administrateur_consulter_indicateurs = new Roles_action(new Date(), soufian.getNom()+" "+soufian.getPrenom());
+		administrateur.ajoutAction(administrateur_consulter_indicateurs);
+		consulter_indicateurs.ajoutRole(administrateur_consulter_indicateurs);
+		
 		/*
 		Roles_action admin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac1, administrateur);
 		Roles_action admin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", ac2, administrateur);
@@ -50,80 +109,28 @@ public class Main {
 		Roles_utilisateurs soufian_admin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u1, administrateur);
 		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(sdf.parse("2016-11-09"), "Soufian AIT TIRITE", u2, magasin);
 		*/
-		Roles_utilisateurs soufian_admin= new Roles_utilisateurs(new Date(), "Soufian AIT TIRITE");
-		u1.ajoutRoles(soufian_admin);
-		administrateur.ajoutUtilisateur(soufian_admin);
-
-		Roles_utilisateurs steven_magasin= new Roles_utilisateurs(new Date(), "Soufian AIT TIRITE");
-		magasin.ajoutUtilisateur(steven_magasin);
-		u2.ajoutRoles(steven_magasin);
 		
-		Roles_action admin1 = new Roles_action(new Date(), "Soufian AIT TIRITE");
-		Roles_action admin2 = new Roles_action(new Date(), "Soufian AIT TIRITE");
-		Roles_action admin3 = new Roles_action(new Date(), "Soufian AIT TIRITE");
-		Roles_action admin4 = new Roles_action(new Date(), "Soufian AIT TIRITE");
-		
-		ac1.ajoutRole(admin1);
-		administrateur.ajoutAction(admin1);
-		ac2.ajoutRole(admin2);
-		administrateur.ajoutAction(admin2);
-		ac3.ajoutRole(admin3);
-		administrateur.ajoutAction(admin3);
-		ac4.ajoutRole(admin4);
-		administrateur.ajoutAction(admin4);
-		
-		Roles_action particulier1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
-		Roles_action particulier2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
-		Roles_action particulier3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
-		
-		ac2.ajoutRole(particulier1);
-		particulier.ajoutAction(particulier1);
-		ac1.ajoutRole(particulier2);
-		particulier.ajoutAction(particulier2);
-		ac4.ajoutRole(particulier3);
-		particulier.ajoutAction(particulier3);
-		
-		Roles_action magasin1 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
-		Roles_action magasin2 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
-		Roles_action magasin3 = new Roles_action(sdf.parse("2016-11-09"), "Soufian AIT TIRITE");
-		
-		ac3.ajoutRole(magasin1);
-		magasin.ajoutAction(magasin1);
-		ac1.ajoutRole(magasin2);
-		magasin.ajoutAction(magasin2);
-		ac4.ajoutRole(magasin3);
-		magasin.ajoutAction(magasin3);
 		
 		
 		em.getTransaction().begin();
 		
-		em.persist(u1);
-		em.persist(u2);
-		
-		em.persist(ac1);
-		em.persist(ac2);
-		em.persist(ac3);
-		em.persist(ac4);
-		
 		em.persist(administrateur);
-		em.persist(particulier);
 		em.persist(magasin);
+		em.persist(annonceur);
 		
-		em.persist(admin1);
-		em.persist(admin2);
-		em.persist(admin3);
-		em.persist(admin4);
+		em.persist(soufian);
+		em.persist(dubois);
+		em.persist(dupont);
+		em.persist(deschamps);
 		
-		em.persist(particulier1);
-		em.persist(particulier2);
-		em.persist(particulier3);
-		
-		em.persist(magasin1);
-		em.persist(magasin2);
-		em.persist(magasin3);
-		
-		em.persist(soufian_admin);
-		em.persist(steven_magasin);
+		em.persist(rediger_annonce);
+		em.persist(modifier_annonce);
+		em.persist(supprimer_annonce);
+		em.persist(publier_annonce);
+		em.persist(vendre_guitare);
+		em.persist(gerer_acces);
+		em.persist(gerer_magasin);
+		em.persist(consulter_indicateurs);
 	
 		em.getTransaction().commit();
 		em.close();
