@@ -50,7 +50,7 @@ public class ComposantUploadeur {
 	
 	private boolean transfert(String xml) {
 		Client client = ClientBuilder.newClient();
-		WebTarget cible = client.target(UriBuilder.fromPath("http://tomcatcreateurutilisateur:8080/ppe-creation-utilisateurs-serveur"));
+		WebTarget cible = client.target(UriBuilder.fromPath("http://tomcatcreateurutilisateur:8080/PPE3v2CREATEURUTILISATEUR/"));
 		WebTarget ciblefinale = cible.path("xml");
 		ciblefinale.request(MediaType.TEXT_PLAIN_TYPE).post(Entity.entity(xml, MediaType.TEXT_PLAIN));
 		return true;
