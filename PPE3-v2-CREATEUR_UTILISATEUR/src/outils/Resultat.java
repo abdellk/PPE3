@@ -28,10 +28,10 @@ public class Resultat {
 		em.getTransaction().begin();
 		System.out.println("TAILLE : " + employees.size());
 		for(Utilisateur obj : employees) {
-			// em.getTransaction().begin();
+			em.getTransaction().begin();
 			System.out.println(obj);
 			em.persist(obj);
-			// em.getTransaction().commit();
+			em.getTransaction().commit();
 		}
 		em.getTransaction().commit();
 		em.close();

@@ -25,7 +25,7 @@ public class ServiceREST {
 	@Consumes("text/plain")
 	public void postXML(String xml) throws ParserConfigurationException, SAXException, IOException {
 		System.out.println(xml);		
-		//creer(xml);
+		creer(xml);
 	}
 	
 	private boolean creer(String xml) throws ParserConfigurationException, SAXException, IOException {
