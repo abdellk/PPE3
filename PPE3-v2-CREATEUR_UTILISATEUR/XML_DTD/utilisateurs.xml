@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE projet SYSTEM "utilisateurs.dtd" >
+<!DOCTYPE projet SYSTEM "XML_DTD/utilisateurs.dtd" >
 <projet>
   <utilisateurs>
     <email>soufian.a@free.fr</email>
