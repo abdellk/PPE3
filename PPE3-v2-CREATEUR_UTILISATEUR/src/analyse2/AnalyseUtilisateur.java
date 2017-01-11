@@ -1,4 +1,4 @@
-package analyse;
+package analyse2;
 
 import java.util.List;
 
