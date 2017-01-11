@@ -56,9 +56,6 @@ public class AnalyseUtilisateur implements ContentHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
 		System.out.println(qName);
-		if(qName=="utilisateurs"){
-			user = new Utilisateur();
-		}
 	}
 
 	@Override
