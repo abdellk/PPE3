@@ -1,37 +1,33 @@
 package controleur;
 
-
 import java.io.IOException;
-import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-/*
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-*/
-import modele.Utilisateurs;
 
-@Path("/dtoJOURNAL")
+import modele.Utilisateur;
+
+@Path("dto2")
 public class ServiceREST2 {
 	
-	//private final static String QUEUE_NAME = "journal";
+	private final static String QUEUE_NAME = "journal";
 	private String messageJournal;
 	private String nomprenom;
 	private String role;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_XML)
-	public MessageDTO getDTO(@QueryParam("login") String email, @QueryParam("password") String password) {
+	public MessageDTO getDTO(@QueryParam("email") String email, @QueryParam("password") String password) {
 		
 		MessageDTO message = new MessageDTO();
 		
@@ -47,49 +43,48 @@ public class ServiceREST2 {
 	
 	private boolean authentifier(String email, String password) {
 		boolean statut = false;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
 		EntityManager em = null;
 		try {
-				//em = FournisseurDePersistance.getInstance().fournir();type name = new type();
-				em = emf.createEntityManager();
+				em = FournisseurDePersistance.getInstance().fournir();
 				em.getTransaction().begin();
-				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL=?", Utilisateurs.class);
+				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL = ?", Utilisateur.class);
 				requete.setParameter(1, email);
-				Utilisateurs utilisateur = (Utilisateurs) requete.getSingleResult();
-			
+				Utilisateur utilisateur = (Utilisateur) requete.getSingleResult();
+				nomprenom = utilisateur.getNom() + " " + utilisateur.getPrenom();
+				role = utilisateur.getRole().getRole();
+				messageJournal = email +"|" + nomprenom +"|";
 				if(!utilisateur.getPassword().equals(password)) {
-					messageJournal = email + " mauvais password";
+					messageJournal += "mauvais password";
 				}
 				else {
-						nomprenom = utilisateur.getNom() + " " + utilisateur.getPrenom();
-						messageJournal = email + " accès " + new Date();
+						
+						messageJournal += "succes";
 						statut = true;
 				}
-				
-
+				em.getTransaction().commit();
 		} catch (Exception e) {
-			messageJournal = email + " utilisateur inconnu";
+			messageJournal = email + "|null|utilisateur inconnu";
+			em.getTransaction().rollback();
 		}
 		finally {
-			em.getTransaction().commit();
-			em.close();
 			try {
-				//	journaliser();
+					em.close();
+					journaliser();
 			} catch (Exception e) {e.printStackTrace();
 			}			
 		}
 		return statut;
 	}
-	/*
+	
 	private void journaliser() throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
 	    factory.setHost("rabbitmq");
 	    Connection connexion = (Connection) factory.newConnection();
 	    Channel channel = connexion.createChannel();
 	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    System.out.println(messageJournal);
 	    channel.basicPublish("", QUEUE_NAME, null, messageJournal.getBytes());
-	    System.out.println(" [x] Envoyé '" + messageJournal + "'");
 	    channel.close();
 	    connexion.close();
-	}*/
+	}
 }

@@ -13,12 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import modele.Roles_utilisateurs;
-import modele.Utilisateurs;
-
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+
+import modele2.Roles_utilisateurs;
+import modele2.Utilisateurs;
 
 @Path("/dto")
 public class ServiceREST {

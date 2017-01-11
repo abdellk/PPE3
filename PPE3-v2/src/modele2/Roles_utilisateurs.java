@@ -1,4 +1,4 @@
-package modele;
+package modele2;
 
 import java.util.Date;
 
@@ -13,36 +13,36 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="roles_action")
-public class Roles_action {
+@Table(name="roles_utilisateurs")
+public class Roles_utilisateurs {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idra;
+	private int idru;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date derniere_mise_a_jour;
 	private String modifier_par;
 	@ManyToOne
-	@JoinColumn(name="action_fk")
-	private Action action;
+	@JoinColumn(name="utlisateurs_fk")
+	private Utilisateurs utilisateur;
 	@ManyToOne
-	@JoinColumn(name="role_fk")
+	@JoinColumn(name="roles_fk")
 	private Roles role;
-	
-	/*public Roles_action(Date derniere_mise_a_jour, String modifier_par, Action action, Roles role) {
+
+	/*public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par, Utilisateurs utilisateur, Roles role) {
 		super();
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
-		this.action = action;
+		this.utilisateur = utilisateur;
 		this.role = role;
 	}*/
-	public Roles_action(Date derniere_mise_a_jour, String modifier_par) {
+	public Roles_utilisateurs(Date derniere_mise_a_jour, String modifier_par) {
 		super();
 		this.derniere_mise_a_jour = derniere_mise_a_jour;
 		this.modifier_par = modifier_par;
 	}
 
-	public Roles_action() {
+	public Roles_utilisateurs() {
 		super();
 	}
 
@@ -62,25 +62,30 @@ public class Roles_action {
 		this.modifier_par = modifier_par;
 	}
 
-	public Action getAction() {
-		return action;
+	public int getId() {
+		return idru;
+	}
+
+	public Utilisateurs getUtilisateur() {
+		return utilisateur;
 	}
 
 	public Roles getRole() {
 		return role;
 	}
 
-	public int getIdra() {
-		return idra;
-	}
-
-	public void setAction(Action action) {
-		this.action = action;
+	public void setUtilisateur(Utilisateurs utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	public void setRole(Roles role) {
 		this.role = role;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Roles_utilisateurs [idru=" + idru + ", derniere_mise_a_jour=" + derniere_mise_a_jour + ", modifier_par="
+				+ modifier_par + ", utilisateur=" + utilisateur + ", role=" + role + "]";
+	}
 	
 }

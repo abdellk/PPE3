@@ -1,49 +1,56 @@
 package modele;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="action")
+@Table(name = "ACTION")
 public class Action {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int ida;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int idaction;
+	@Column(nullable = false)
 	private String action;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date derniere_mise_a_jour;
-	private String modifier_par;
+	@Column(nullable = false)
 	private String description;
-	@OneToMany(mappedBy="action", cascade=CascadeType.ALL)
-	private List<Roles_action> actions = new ArrayList<Roles_action>();
-	
-	public Action(String action, Date derniere_mise_a_jour, String modifier_par, String description) {
-		super();
-		this.action = action;
-		this.derniere_mise_a_jour = derniere_mise_a_jour;
-		this.modifier_par = modifier_par;
-		this.description = description;
-	}
-	
-	public void ajoutRole(Roles_action ra){
-		actions.add(ra);
-		ra.setAction(this);
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
+	private Date derniere_mise_a_jour;
+	@Column(nullable = false)
+	private String modifie_par;
+	@ManyToOne
+	@JoinColumn(name = "ROLE_FK")
+	private Role role;
 
 	public Action() {
 		super();
+	}
+
+	public Action(String action, String description, Date derniere_mise_a_jour, String modifie_par) {
+		super();
+		this.action = action;
+		this.description = description;
+		this.derniere_mise_a_jour = derniere_mise_a_jour;
+		this.modifie_par = modifie_par;
+	}
+
+	public int getIdaction() {
+		return idaction;
+	}
+
+	public void setIdaction(int idaction) {
+		this.idaction = idaction;
 	}
 
 	public String getAction() {
@@ -54,22 +61,6 @@ public class Action {
 		this.action = action;
 	}
 
-	public Date getDerniere_mise_a_jour() {
-		return derniere_mise_a_jour;
-	}
-
-	public void setDerniere_mise_a_jour(Date derniere_mise_a_jour) {
-		this.derniere_mise_a_jour = derniere_mise_a_jour;
-	}
-
-	public String getModifier_par() {
-		return modifier_par;
-	}
-
-	public void setModifier_par(String modifier_par) {
-		this.modifier_par = modifier_par;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -78,16 +69,28 @@ public class Action {
 		this.description = description;
 	}
 
-	public int getId() {
-		return ida;
+	public Date getDerniere_mise_a_jour() {
+		return derniere_mise_a_jour;
 	}
 
-	@Override
-	public String toString() {
-		return "Action [id=" + ida + ", action=" + action + ", derniere_mise_a_jour=" + derniere_mise_a_jour
-				+ ", modifier_par=" + modifier_par + ", description=" + description + "]";
+	public void setDerniere_mise_a_jour(Date derniere_mise_a_jour) {
+		this.derniere_mise_a_jour = derniere_mise_a_jour;
 	}
-	
-	
-	
+
+	public String getModifie_par() {
+		return modifie_par;
+	}
+
+	public void setModifie_par(String modifie_par) {
+		this.modifie_par = modifie_par;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
 }

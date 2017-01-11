@@ -4,8 +4,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 version="2.0">
 	<persistence-unit name="jdbc" transaction-type="RESOURCE_LOCAL">
 		<class>modele.Action</class>
-		<class>modele.Roles_action</class>
-		<class>modele.Roles_utilisateurs</class>
 		<class>modele.Roles</class>
 		<class>modele.Utilisateurs</class>
 		<class>controleur.GerantPersistence</class>
