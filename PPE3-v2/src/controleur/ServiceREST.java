@@ -20,7 +20,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import modele2.Roles_utilisateurs;
 import modele2.Utilisateurs;
 
-@Path("/dto")
+@Path("/dtoLATER")
 public class ServiceREST {
 
 	private final static String QUEUE_NAME = "journal";
