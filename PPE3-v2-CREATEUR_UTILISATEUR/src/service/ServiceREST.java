@@ -22,21 +22,21 @@ import outils.Resultat;
 public class ServiceREST {	
 	
 	@POST
-	@Consumes("text/plain")
+	@Consumes("text/plain")//méthode de réception des donnés HTTP POST
 	public void postXML(String xml) throws ParserConfigurationException, SAXException, IOException {
-		System.out.println(xml);		
-		creer(xml);
+		System.out.println(xml);//affichage du contenu reçu	
+		creer(xml);//exécution de la méthode POST avec le contenu reçu
 	}
 	
 	private boolean creer(String xml) throws ParserConfigurationException, SAXException, IOException {
-		boolean statut = false;
+		boolean statut = false;//
 		SAXParserFactory parserFactor = SAXParserFactory.newInstance();
 		SAXParser parser = parserFactor.newSAXParser();
-		Resultat resultat = new Resultat();
-		ExtracteurConstructeur ec = new ExtracteurConstructeur(resultat);
-		parser.parse(new InputSource(new StringReader(xml)), ec);
-		resultat.enregistrer();
-		statut= true;
+		Resultat resultat = new Resultat();//instanciation de la variable resultat
+		ExtracteurConstructeur ec = new ExtracteurConstructeur(resultat);//insertion de l'objet resultat dans l'extracteur pour pouvoir récupérer ensuite la liste des employés à faire persister
+		parser.parse(new InputSource(new StringReader(xml)), ec);//lecture du contenu XML à partir des données reçus en chaînes de caractères grâce à l'objet ec (class ExtracteurConstructeur)
+		resultat.enregistrer();//persistence de tous les utilisateurs lus dans le contenu XML
+		statut= true;//changement du statut à true permettant de confirmer la bonne exécution de la méthode
 		return statut;
 	}	
 }
