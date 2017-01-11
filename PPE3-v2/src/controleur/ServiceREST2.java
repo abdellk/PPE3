@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -43,9 +45,11 @@ public class ServiceREST2 {
 	
 	private boolean authentifier(String email, String password) {
 		boolean statut = false;
-		EntityManager em = null;
+		//EntityManager em = null;
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("authentification");
+		EntityManager em = emf.createEntityManager();
 		try {
-				em = FournisseurDePersistance.getInstance().fournir();
+				//em = FournisseurDePersistance.getInstance().fournir();
 				em.getTransaction().begin();
 				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL = ?", Utilisateur.class);
 				requete.setParameter(1, email);
@@ -69,8 +73,10 @@ public class ServiceREST2 {
 		finally {
 			try {
 					em.close();
+					emf.close();
 					journaliser();
-			} catch (Exception e) {e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}			
 		}
 		return statut;

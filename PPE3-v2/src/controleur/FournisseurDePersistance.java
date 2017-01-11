@@ -1,9 +1,13 @@
 package controleur;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+@ManagedBean
+@ApplicationScoped
 public class FournisseurDePersistance {
 	
 	public EntityManager fournir() {
@@ -18,7 +22,7 @@ public class FournisseurDePersistance {
 	}
 	
 	
-	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("authentification");
 	private static FournisseurDePersistance instance = null;
 
 	private FournisseurDePersistance() {

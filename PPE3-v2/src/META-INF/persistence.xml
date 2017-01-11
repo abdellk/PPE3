@@ -2,19 +2,20 @@
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 version="2.0">
-	<persistence-unit name="jdbc" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="authentification" transaction-type="RESOURCE_LOCAL">
 		<class>modele.Action</class>
 		<class>modele.Roles</class>
-		<class>modele.Utilisateurs</class>
-		<class>controleur.GerantPersistence</class>
+		<class>modele.Utilisateur</class>
+		<class>controleur.FournisseurDePersistance</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-			<property name="javax.persistence.jdbc.user" value="derby"/>
-			<property name="javax.persistence.jdbc.password" value="derby"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby://derby:1530/soufianPPE3v2;create=true"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
-			<property name="hibernate.max_fetch_depth" value="3"/>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+         <property name="javax.persistence.jdbc.user" value="derby"/>
+         <property name="javax.persistence.jdbc.password" value="derby"/>
+         <property name="javax.persistence.jdbc.url" value="jdbc:derby://derby:1530/SoufianDATABASE"/>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSixDialect"/>
+         <!-- <property name="hibernate.connection.autocommit" value="true" /> -->
+         <property name="hibernate.max_fetch_depth" value="3"/>     
+         <property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>
 	</persistence-unit>
 </persistence>
