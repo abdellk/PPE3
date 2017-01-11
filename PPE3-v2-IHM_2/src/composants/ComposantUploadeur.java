@@ -39,9 +39,9 @@ public class ComposantUploadeur {
 				byte[] flux = Files.readAllBytes(Paths.get("/tmp/"+file.getSubmittedFileName()));
 				boolean statut = transfert(new String(flux, Charset.defaultCharset()));
 				if (statut) resultat = "Le chargement a réussi";
-				else resultat = "échec du chargement";
-				/*File lefichier = new File("/tmp/"+file.getSubmittedFileName());
-				lefichier.delete();*/
+				else resultat = "échec du transfert du fichier";
+				File lefichier = new File("/tmp/"+file.getSubmittedFileName());
+				lefichier.delete();
 		} catch (IOException e) { e.printStackTrace();
 			resultat = "échec du chargement";
 		}
