@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="/opt/logiciels/frameworks/hibernate-release-5.2.4.Final/lib/required/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar"/>
 	<classpathentry kind="lib" path="/opt/logiciels/frameworks/hibernate-release-5.2.4.Final/lib/required/jboss-logging-3.3.0.Final.jar"/>
 	<classpathentry kind="lib" path="/opt/logiciels/frameworks/hibernate-release-5.2.4.Final/lib/required/jsr250-api-1.0.jar"/>
+	<classpathentry kind="lib" path="/opt/logiciels/librairies/jdk1.8.0_112/db/lib/derbyclient.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
