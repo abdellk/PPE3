@@ -1,6 +1,7 @@
 package controleur;
 
 import java.io.IOException;
+import org.apache.commons.lang3.StringUtils;
 import java.util.concurrent.TimeoutException;
 
 import javax.persistence.EntityManager;
@@ -12,6 +13,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -37,8 +40,11 @@ public class ServiceREST2 {
 			message.setBienvenue("Bienvenue " + nomprenom);
 			message.setRole(role);
 		}
-		else
-			message.setBienvenue("Erreur de connexion");
+		else{
+			String donneesMembres[] = StringUtils.split(messageJournal, "|");
+			message.setBienvenue(donneesMembres[2]);
+			message.setRole("");
+		}
 		
 		return message;		
 	}
@@ -61,7 +67,6 @@ public class ServiceREST2 {
 					messageJournal += "mauvais password";
 				}
 				else {
-						
 						messageJournal += "succes";
 						statut = true;
 				}
