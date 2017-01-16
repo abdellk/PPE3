@@ -23,7 +23,7 @@ import modele2.Utilisateurs;
 @Path("/dtoLATER")
 public class ServiceREST {
 
-	private final static String QUEUE_NAME = "journal";
+	private final static String QUEUE_NAME = "journal-des-authentifications";
 	private String messageJournal;
 	
 	@GET

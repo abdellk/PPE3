@@ -22,7 +22,7 @@ import modele.Utilisateur;
 @Path("dto")
 public class ServiceREST2 {
 	
-	private final static String QUEUE_NAME = "journal";
+	private final static String QUEUE_NAME = "journal-des-authentifications";
 	private String messageJournal;
 	private String nomprenom;
 	private String role;
@@ -38,19 +38,19 @@ public class ServiceREST2 {
 			message.setRole(role);
 		}
 		else
-			message.setBienvenue(messageJournal);
+			message.setBienvenue("Erreur de connexion");
 		
 		return message;		
 	}
 	
 	private boolean authentifier(String email, String password) {
 		boolean statut = false;
-		//EntityManager em = null;
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("authentification");
-		EntityManager em = emf.createEntityManager();
+		EntityManager em = null;
+		/*EntityManagerFactory emf = Persistence.createEntityManagerFactory("authentification");
+		EntityManager em = emf.createEntityManager();*/
 		try {
-				//em = FournisseurDePersistance.getInstance().fournir();
-				em.getTransaction().begin();
+				em = FournisseurDePersistance.getInstance().fournir();
+				//em.getTransaction().begin();
 				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL = ?", Utilisateur.class);
 				requete.setParameter(1, email);
 				Utilisateur utilisateur = (Utilisateur) requete.getSingleResult();
@@ -73,7 +73,7 @@ public class ServiceREST2 {
 		finally {
 			try {
 					em.close();
-					emf.close();
+					//emf.close();
 					journaliser();
 			} catch (Exception e) {
 				e.printStackTrace();
