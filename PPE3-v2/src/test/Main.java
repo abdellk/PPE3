@@ -15,7 +15,7 @@ import modele2.Roles_utilisateurs;
 import modele2.Utilisateurs;
 
 public class Main {
-
+/*
 	public static void main(String[] args) throws ParseException {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("jdbc");
 		EntityManager em = emf.createEntityManager();
@@ -117,5 +117,5 @@ public class Main {
 		em.getTransaction().commit();
 		em.close();
 	}
-
+*/
 }

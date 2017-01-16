@@ -32,7 +32,10 @@ public class AuthentificationGUI {
 		MessageDTO dto = ciblefinale.queryParam("email", email).queryParam("password", password)
 				.request(MediaType.APPLICATION_XML).get(MessageDTO.class);
 		
-		message =dto.getBienvenue()+dto.getRole();
+		message =dto.getBienvenue();
+		if(dto.getRole()!=null){
+			message+=" Role(s): "+dto.getRole()+", ";
+		}
 	}
 
 	public String getEmail() {

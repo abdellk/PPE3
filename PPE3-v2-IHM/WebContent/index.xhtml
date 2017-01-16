@@ -16,7 +16,7 @@
 	<h:outputLabel value="Identifiant :"/>
 	<h:inputText value="#{authentification.email}"/>
 	<h:outputLabel value="Mot de Passe :"/>
-	<h:inputText value="#{authentification.password}"/>
+	<h:inputSecret value="#{authentification.password}"/>
 	<h:commandButton action="#{authentification.controler}" value="Connexion">
 	<f:ajax execute="message" render="msg"/>
 	</h:commandButton>

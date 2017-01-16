@@ -43,7 +43,6 @@ public class ServiceREST2 {
 		else{
 			String donneesMembres[] = StringUtils.split(messageJournal, "|");
 			message.setBienvenue(donneesMembres[2]);
-			message.setRole("");
 		}
 		
 		return message;		
@@ -70,7 +69,7 @@ public class ServiceREST2 {
 						messageJournal += "succes";
 						statut = true;
 				}
-				em.getTransaction().commit();
+				//em.getTransaction().commit();
 		} catch (Exception e) {
 			messageJournal = email + "|null|utilisateur inconnu";
 			em.getTransaction().rollback();
