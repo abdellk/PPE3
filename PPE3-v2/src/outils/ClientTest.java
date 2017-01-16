@@ -1,4 +1,4 @@
-package test;
+package outils;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -16,9 +16,9 @@ public class ClientTest {
 		Client client = ClientBuilder.newClient();
 		WebTarget cible = client.target(UriBuilder.fromPath("http://172.17.0.5:8080/PPE3v2/"));
 		WebTarget ciblefinale = cible.path("dto");
-		String dtotext = ciblefinale.queryParam("email", "SOUFIAN").queryParam("password", "test").request(MediaType.TEXT_PLAIN).get(Response.class).toString();
+		String dtotext = ciblefinale.queryParam("email", "SOUFIAN").queryParam("password", "outils").request(MediaType.TEXT_PLAIN).get(Response.class).toString();
 		System.out.println(dtotext);
-		MessageDTO dto = ciblefinale.queryParam("email", "SOUFIAN").queryParam("password", "test").request(MediaType.APPLICATION_XML).get(MessageDTO.class);
+		MessageDTO dto = ciblefinale.queryParam("email", "SOUFIAN").queryParam("password", "outils").request(MediaType.APPLICATION_XML).get(MessageDTO.class);
 		System.out.println(dto.getBienvenue()+" "+dto.getRole());
 		
 	}
