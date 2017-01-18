@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import modele.Role;
 import modele.Utilisateur;
 import ressources.FournisseurDePersistance;
 
@@ -27,9 +28,10 @@ public class Resultat {
 		EntityManager em = FournisseurDePersistance.getInstance().fournir();//connexion à la base de donnée
 		em.getTransaction().begin();
 		System.out.println("TAILLE : " + employees.size());
+		Role rolemagasin = (Role) em.createNativeQuery("select * from role where role='magasin'", Role.class).getSingleResult();
 		for(Utilisateur obj : employees) {
 			System.out.println(obj);
-			em.persist(obj);//persistence de chacun des utilisateurs contenus dans la collection "employees"
+			rolemagasin.ajoutUtilisateur(obj);//persistence de chacun des utilisateurs en les ajoutants au role magasin
 		}
 		em.getTransaction().commit();
 		em.close();
