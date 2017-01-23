@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     23 janv. 2017 11:38:14                                                        
+
+     project    
+     deploiement
+                   
+     invite                                                                
+     ====================================================================== -->
+<project name="project" default="livraison">
+    <description>
+            deploiement du contexte 2017
+    </description>	
+	
+	<property name="conteneur1" value="tomcatgui"></property>
+	<property name="conteneur2" value="tomcatauthentificateur"></property>
+	<property name="conteneur3" value="tomcatcreateurutilisateur"></property>
+	<property name="conteneur4" value="tomcatjournalisateur"></property>
+	
+	<property name="repertoire-paquetages" value="/home/invite/Bureau/WAR"></property>
+		
+	<property name="paquetage1" value="${repertoire-paquetages}/PPE3v2IHM.war"></property>
+	<property name="paquetage2" value="${repertoire-paquetages}/PPE3v2IHM2.war"></property>
+	<property name="paquetage3" value="${repertoire-paquetages}/PPE3v2.war"></property>
+	<property name="paquetage4" value="${repertoire-paquetages}/PPE3v2CREATEURUTILISATEUR.war"></property>
+	<property name="paquetage5" value="${repertoire-paquetages}/PPE3v2JOURNALISATEUR.war"></property>
+	
+	<property name="repertoire-deploiement" value="apache-tomcat-8.0.20/webapps"></property>
+	
+	
+    <!-- ================================= 
+          target: livraison              
+         ================================= -->
+    <target name="livraison" depends="deploiement" description="deploiement">
+        
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: deploiement                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="deploiement" depends="inspection">
+    	<scp todir="root@${adresse1}:/${repertoire-deploiement}" file="${paquetage1}" password="dockeradmin" trust="true"></scp>
+   	 	<scp todir="root@${adresse1}:/${repertoire-deploiement}" file="${paquetage2}" password="dockeradmin" trust="true"></scp>
+   	 	<scp todir="root@${adresse2}:/${repertoire-deploiement}" file="${paquetage3}" password="dockeradmin" trust="true"></scp>
+   	 	<scp todir="root@${adresse3}:/${repertoire-deploiement}" file="${paquetage4}" password="dockeradmin" trust="true"></scp>
+   	 	<scp todir="root@${adresse4}:/${repertoire-deploiement}" file="${paquetage5}" password="dockeradmin" trust="true"></scp>
+    </target>
+	
+	 <!-- - - - - - - - - - - - - - - - - - 
+	          target: inspection                      
+	         - - - - - - - - - - - - - - - - - -->	
+	  <target name="inspection">
+	  	<exec outputproperty="adresse1" executable="docker">
+	  		<arg line="inspect --format '{{ .NetworkSettings.IPAddress }}' ${conteneur1}"/>
+	  	</exec>
+	  	<exec outputproperty="adresse2" executable="docker">
+	  		<arg line="inspect --format '{{ .NetworkSettings.IPAddress }}' ${conteneur2}"/>
+	  	</exec>
+	  	<exec outputproperty="adresse3" executable="docker">
+	  		<arg line="inspect --format '{{ .NetworkSettings.IPAddress }}' ${conteneur3}"/>
+	  	</exec>
+	  	<exec outputproperty="adresse4" executable="docker">
+	  		<arg line="inspect --format '{{ .NetworkSettings.IPAddress }}' ${conteneur4}"/>
+	  	</exec>
+	  </target>
+
+</project>
